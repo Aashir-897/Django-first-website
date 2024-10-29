@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://media.istockphoto.com/id/1298772937/photo/purple-spotted-pit-viper.webp?a=1&b=1&s=612x612&w=0&k=20&c=ljCUie12I_W9Iatclo35qXSMxIZdx5l4tExa_zRejsw=');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            animation: fadeIn 0.5s ease-in;
+            max-width: 400px; /* Same max-width as login */
+            margin: auto;
+            width: 100%; /* Ensures full width up to max */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #343a40;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-floating {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #495057;
+        }
+
+        .form-control {
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            padding: 0.75rem;
+            width: 100%;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 0.25rem;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .text-muted {
+            text-align: center;
+            color: #6c757d;
+            margin-top: 1rem;
+        }
+
+        .sign-up-link p {
+            text-align: center;
+            margin-top: 1rem;
+            color: azure; /* Ensured color is consistent */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto">
+        <form method="POST" action="{% url 'signup' %}">
+            {% csrf_token %}
+            <h1 class="text-3xl font-bold">Sign Up</h1>
+
+            <div class="form-floating">
+               
+                <input type="text" class="form-control" id="username" name="username" required placeholder="username">
+            </div>
+            <div class="form-floating">
+                
+                <input type="password" class="form-control" id="password1" name="password1" required placeholder="password">
+            </div>
+            <div class="form-floating">
+                
+                <input type="password" class="form-control" id="password2" name="password2" required placeholder="Confirm password">
+            </div>
+        
+            <!-- Display form errors here -->
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <p style="color: red; text-align: center;">{{ error }}</p>
+                {% endfor %}
+            {% endfor %}
+        
+            <button class="btn btn-primary" type="submit">Sign Up</button>
+            <p class="text-muted">&copy; 2024 My Company</p>
+        </form>
+        <div class="sign-up-link">
+            <p>Already have an account? <a href="{% url 'login' %}" style="text-decoration: underline;"> Login</a></p>
+        </div>
+    </div>
+</body>
+</html>
