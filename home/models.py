@@ -27,7 +27,7 @@ class Contact(models.Model):
     
 class User(models.Model):
     username = models.CharField(max_length=150, unique=True)
-    password = models.CharField(max_length=128)  # Password ko securely store karne ke liye hash karna zaroori hai
+    password = models.CharField(max_length=128) 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     def __str__(self):
         return self.username
