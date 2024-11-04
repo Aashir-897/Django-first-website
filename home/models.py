@@ -41,7 +41,7 @@ class Project(models.Model):
     github_url = models.URLField(blank=True, null=True)
     code_snippet = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to='project_images/', blank=True, null=True)
-    date_created = models.DateTimeField(auto_now_add=True)  # Add this line
+    date_created = models.DateTimeField(auto_now_add=True) 
 
     def __str__(self):
         return self.title
